@@ -52,6 +52,7 @@ namespace ThongTinTienAo
             this.chtCoin.Size = new System.Drawing.Size(1328, 731);
             this.chtCoin.TabIndex = 0;
             this.chtCoin.Text = "chart1";
+            this.chtCoin.Click += new System.EventHandler(this.chtCoin_Click);
             // 
             // formGraph
             // 

@@ -6,12 +6,13 @@ using CoinGecko.Clients;
 using CoinGecko.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace ThongTinTienAo
+namespace ThongTinTienAo    
 {
     public partial class formGraph : Form
     {
         public formGraph(string nameCoin)
         {
+            // show graph
             _client = CoinGeckoClient.Instance;
             _nameCoin = nameCoin;
             InitializeComponent();
@@ -41,11 +42,18 @@ namespace ThongTinTienAo
             
             try
             {
+                // declare the name of MySQL file 
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
+                // creat table
+                // InnoDB could explain what MySQL version we are using
                 string query = " CREATE TABLE `geckocoin_data`.`" + _nameCoin + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
-
+                // send databaseCoinnection and send it to connectionString
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+
+                // read the query and send to databaseConnection
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+
+                //read the query above
                 commandDatabase.CommandTimeout = 60;
 
                 databaseConnection.Open();
@@ -55,35 +63,44 @@ namespace ThongTinTienAo
 
                 databaseConnection.Close();
             }
+            // if could not connect the database, query the TRUNCATE TABLE
             catch (Exception ex)
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
+                //** test a random example and write error message, because C# could not try-catch the error like MySQL
                 string query = "TRUNCATE TABLE " + _nameCoin + ";";
-
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+
+                // read the query above
                 commandDatabase.CommandTimeout = 60;
+
                 // Show any error message.
                 databaseConnection.Open();
-
                 MessageBox.Show(ex.Message);
             }
-            StringBuilder command = new StringBuilder();
 
+            StringBuilder command = new StringBuilder();
             var result = await _client.CoinsClient.GetMarketChartsByCoinId(_nameCoin, "usd", "max");
+
+            // get only Prices value
             foreach(var value in result.Prices)
             {
+                // insert the below data into the created table
+                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
+
+                // get the first line
                 value[0] = value[0] / 1000;
                 Console.Write(FromUnixTime((long)value[0]));
                 Console.Write(", ");
                 Console.WriteLine(value[1]);
 
-                chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0,11), value[1]);
-                //query = "INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');";
-                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
-
+                // AddXY is function to draw the graph
+                // transform to String and start form 0 to 11 characters
+                chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0,11), value[1]);                        
+              
             }
+
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
@@ -92,10 +109,9 @@ namespace ThongTinTienAo
                 MySqlCommand commandDatabase = new MySqlCommand(command.ToString(), databaseConnection);
                 commandDatabase.CommandTimeout = 60;
 
+                // get the data from the table and show in MySQL 
                 databaseConnection.Open();
-                MySqlDataReader myReader = commandDatabase.ExecuteReader();
-
-                //MessageBox.Show("Cập nhật dữ liệu Oke");
+                MySqlDataReader myReader = commandDatabase.ExecuteReader();             
 
                 databaseConnection.Close();
             }
@@ -103,6 +119,11 @@ namespace ThongTinTienAo
             {
 
             }
+
+        }
+
+        private void chtCoin_Click(object sender, EventArgs e)
+        {
 
         }
     }

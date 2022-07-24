@@ -24,16 +24,14 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
                 commandDatabase.CommandTimeout = 60;
-
+                // creat the table
                 databaseConnection.Open();
                 MySqlDataReader myReader = commandDatabase.ExecuteReader();
-
-                //MessageBox.Show("Tạo bảng oke");
 
                 databaseConnection.Close();
             }
@@ -46,22 +44,21 @@ namespace ThongTinTienAo
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
                 commandDatabase.CommandTimeout = 60;
                 // Show any error message.
-                databaseConnection.Open();
+                    databaseConnection.Open();
 
                 MessageBox.Show(ex.Message);
             }
             StringBuilder command = new StringBuilder();
 
-            var result = await _client.CoinsClient.GetMarketChartsByCoinId("bitcoin", "usd", "max");
+            var result = await _client.CoinsClient.GetMarketChartsByCoinId("bitcoin", "usd", "max");          
             foreach (var value in result.Prices)
             {
-                value[0] = value[0] / 1000;
+                value[0] = value[0] / 1000;                
                 Console.Write(FromUnixTime((long)value[0]));
                 Console.Write(", ");
                 Console.WriteLine(value[1]);
 
-                //chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0, 11), value[1]);
-                //query = "INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');";
+              
                 command.Append("INSERT INTO " + "bitcoin" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
 
 
@@ -163,7 +160,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -409,12 +406,8 @@ namespace ThongTinTienAo
                 value[0] = value[0] / 1000;
                 Console.Write(FromUnixTime((long)value[0]));
                 Console.Write(", ");
-                Console.WriteLine(value[1]);
-
-                //chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0, 11), value[1]);
-                //query = "INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');";
+                Console.WriteLine(value[1]);                
                 command.Append("INSERT INTO " + "eos" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
 
             }
             try
@@ -423,7 +416,7 @@ namespace ThongTinTienAo
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(command.ToString(), databaseConnection);
-                commandDatabase.CommandTimeout = 60;
+                commandDatabase.CommandTimeout = 60;        
 
                 databaseConnection.Open();
                 MySqlDataReader myReader = commandDatabase.ExecuteReader();
@@ -461,7 +454,7 @@ namespace ThongTinTienAo
 
             try
             {
-                // Check CoinGecko API status
+                // Check data status
                 if ((await pingClient.GetPingAsync()).GeckoSays != string.Empty)
                 {
                     // Getting current price of tether in usd
@@ -469,34 +462,34 @@ namespace ThongTinTienAo
                     string vsCurrencies = "usd";
                     lblCoinTop6.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["tether"]["usd"]).ToString();
                     // Getting current price of tether in usd
-                    await Task.Delay(100); // (Probably should be longer...)
+                    await Task.Delay(100); 
 
                     ids = "ethereum";
                     vsCurrencies = "usd";
                     lblCoinTop2.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["ethereum"]["usd"]).ToString();
-                    await Task.Delay(100); // (Probably should be longer...)
+                    await Task.Delay(100); 
 
                     // Getting current price of tether in usd
                     ids = "bitcoin";
                     vsCurrencies = "usd";
                     lblCoinTop1.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["bitcoin"]["usd"]).ToString();
-                    await Task.Delay(100); // (Probably should be longer...)
+                    await Task.Delay(100); 
 
                     ids = "ripple";
                     vsCurrencies = "usd";
                     lblCoinTop4.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["ripple"]["usd"]).ToString();
-                    await Task.Delay(100); // (Probably should be longer...)                               
+                    await Task.Delay(100);                                
 
 
                     ids = "litecoin";
                     vsCurrencies = "usd";
                     lblCoinTop5.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["litecoin"]["usd"]).ToString();
-                    await Task.Delay(100); // (Probably should be longer...)
+                    await Task.Delay(100); 
 
                     ids = "eos";
                     vsCurrencies = "usd";
                     lblCoinTop8.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["eos"]["usd"]).ToString();
-                    await Task.Delay(100); // (Probably should be longer...)
+                    await Task.Delay(100); 
 
                 }
             }
@@ -507,24 +500,33 @@ namespace ThongTinTienAo
         }
 
         private async void btnTim_Click(object sender, EventArgs e)
-        {
+        {   
+            // send and receive requirement
             HttpClient httpClient = new HttpClient();
+
+            // format the data in Json file
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings();
 
+            // an object sended to httpClient to send and receive data and format Json file
             PingClient pingClient = new PingClient(httpClient, serializerSettings);
             SimpleClient simpleClient = new SimpleClient(httpClient, serializerSettings);
             CoinGeckoClient coinClient = new CoinGeckoClient(httpClient, serializerSettings);
 
+            // show CoinPrice
             lblGiaTien.Text = "Checking.....";
             try
             {
                 // Check CoinGecko API status
+                // if the data is not empty (can get data)
                 if ((await pingClient.GetPingAsync()).GeckoSays != string.Empty)
                 {
                     try
                     {
+                        // save name coin into ids
                         string ids = tbxNameCoin1.Text;
+                        // choose unit to convert
                         string vsCurrencies = "usd";
+                        // print
                         lblGiaTien.Text = "Coin Price " + ids + ": " +
                             ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))[ids]["usd"]).ToString()
                             + "$";
@@ -544,7 +546,8 @@ namespace ThongTinTienAo
         private void btnDoThi_Click(object sender, EventArgs e)
         {
             if (lblGiaTien.Text.Length > 20)
-            {
+            {   
+                // open the Graph with the parameter in tbxNameCoin1
                 formGraph fr = new formGraph(tbxNameCoin1.Text);
                 fr.Show();
 
