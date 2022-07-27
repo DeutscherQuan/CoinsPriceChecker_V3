@@ -37,7 +37,7 @@ namespace ThongTinTienAo
             return epoch.AddSeconds(unixTime);
         }
 
-        private async void fillchart()
+        private async void fillchart()  
         {
             
             try
@@ -46,7 +46,7 @@ namespace ThongTinTienAo
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
                 // creat table
                 // InnoDB could explain what MySQL version we are using
-                string query = " CREATE TABLE `geckocoin_data`.`" + _nameCoin + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + _nameCoin + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
                 // send databaseCoinnection and send it to connectionString
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
@@ -84,20 +84,23 @@ namespace ThongTinTienAo
             var result = await _client.CoinsClient.GetMarketChartsByCoinId(_nameCoin, "usd", "max");
 
             // get only Prices value
-            foreach(var value in result.Prices)
+            for(long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
+                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + result.TotalVolumes[i][1] + "');");
 
                 // get the first line
-                value[0] = value[0] / 1000;
-                Console.Write(FromUnixTime((long)value[0]));
-                Console.Write(", ");
-                Console.WriteLine(value[1]);
+                result.Prices[i][0] = result.Prices[i][0] / 1000;
+                /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
+                Console.Write(",                    ");*/
+                Console.Write(result.Prices[i][1]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.TotalVolumes[i][0]);
+                
 
                 // AddXY is function to draw the graph
                 // transform to String and start form 0 to 11 characters
-                chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0,11), value[1]);                        
+                chtCoin.Series[0].Points.AddXY(FromUnixTime((long)result.Prices[i][0]).ToString().Substring(0,11), result.Prices[i][1]);                        
               
             }
 
@@ -111,7 +114,7 @@ namespace ThongTinTienAo
 
                 // get the data from the table and show in MySQL 
                 databaseConnection.Open();
-                MySqlDataReader myReader = commandDatabase.ExecuteReader();             
+                MySqlDataReader myReader = commandDatabase.ExecuteReader();           
 
                 databaseConnection.Close();
             }

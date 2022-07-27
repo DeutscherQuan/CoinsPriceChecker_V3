@@ -12,6 +12,7 @@ namespace ThongTinTienAo
 {
     public partial class formMain : Form
     {
+        
         private readonly ICoinGeckoClient _client;
         private static readonly DateTime epoch = new DateTime(1970, 1, 1);
         public static DateTime FromUnixTime(long unixTime)
@@ -24,7 +25,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` TEXT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -50,18 +51,20 @@ namespace ThongTinTienAo
             }
             StringBuilder command = new StringBuilder();
 
-            var result = await _client.CoinsClient.GetMarketChartsByCoinId("bitcoin", "usd", "max");          
-            foreach (var value in result.Prices)
+            var result = await _client.CoinsClient.GetMarketChartsByCoinId("bitcoin", "usd", "max");
+            for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
-                value[0] = value[0] / 1000;                
-                Console.Write(FromUnixTime((long)value[0]));
-                Console.Write(", ");
-                Console.WriteLine(value[1]);
-
-              
-                command.Append("INSERT INTO " + "bitcoin" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
-
+                // insert the below data into the created table
+                command.Append("INSERT INTO " + "bitcoin" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                lblCoinVolume1.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblMarketCap1.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                // get the first line
+                result.Prices[i][0] = result.Prices[i][0] / 1000;
+                /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
+                Console.Write(",                    ");*/
+                Console.Write(result.Prices[i][1]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.TotalVolumes[i][0]);
             }
             try
             {
@@ -90,7 +93,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "tether" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "tether" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -119,18 +122,19 @@ namespace ThongTinTienAo
             StringBuilder command = new StringBuilder();
 
             var result = await _client.CoinsClient.GetMarketChartsByCoinId("tether", "usd", "max");
-            foreach (var value in result.Prices)
+            for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
-                value[0] = value[0] / 1000;
-                Console.Write(FromUnixTime((long)value[0]));
-                Console.Write(", ");
-                Console.WriteLine(value[1]);
-
-                //chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0, 11), value[1]);
-                //query = "INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');";
-                command.Append("INSERT INTO " + "tether" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
-
+                // insert the below data into the created table
+                command.Append("INSERT INTO " + "tether" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                lblCoinVolume2.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblMarketCap2.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                // get the first line
+                result.Prices[i][0] = result.Prices[i][0] / 1000;
+                /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
+                Console.Write(",                    ");*/
+                Console.Write(result.Prices[i][1]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.TotalVolumes[i][0]);
             }
             try
             {
@@ -160,7 +164,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -188,20 +192,20 @@ namespace ThongTinTienAo
             }
             StringBuilder command = new StringBuilder();
 
-            var result = await _client.CoinsClient.GetMarketChartsByCoinId(
-                "ethereum", "usd", "max");
-            foreach (var value in result.Prices)
+            var result = await _client.CoinsClient.GetMarketChartsByCoinId("ethereum", "usd", "max");
+            for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
-                value[0] = value[0] / 1000;
-                Console.Write(FromUnixTime((long)value[0]));
-                Console.Write(", ");
-                Console.WriteLine(value[1]);
-
-                //chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0, 11), value[1]);
-                //query = "INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');";
-                command.Append("INSERT INTO " + "ethereum" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
-
+                // insert the below data into the created table
+                command.Append("INSERT INTO " + "ethereum" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                lblCoinVolume3.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblMarketCap3.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                // get the first line
+                result.Prices[i][0] = result.Prices[i][0] / 1000;
+                /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
+                Console.Write(",                    ");*/
+                Console.Write(result.Prices[i][1]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.TotalVolumes[i][0]);
             }
             try
             {
@@ -231,7 +235,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "ripple" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "ripple" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -260,18 +264,19 @@ namespace ThongTinTienAo
             StringBuilder command = new StringBuilder();
 
             var result = await _client.CoinsClient.GetMarketChartsByCoinId("ripple", "usd", "max");
-            foreach (var value in result.Prices)
+            for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
-                value[0] = value[0] / 1000;
-                Console.Write(FromUnixTime((long)value[0]));
-                Console.Write(", ");
-                Console.WriteLine(value[1]);
-
-                //chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0, 11), value[1]);
-                //query = "INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');";
-                command.Append("INSERT INTO " + "ripple" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
-
+                // insert the below data into the created table
+                command.Append("INSERT INTO " + "ripple" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                lblCoinVolume4.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblMarketCap4.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                // get the first line
+                result.Prices[i][0] = result.Prices[i][0] / 1000;
+                /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
+                Console.Write(",                    ");*/
+                Console.Write(result.Prices[i][1]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.TotalVolumes[i][0]);
             }
             try
             {
@@ -302,7 +307,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "litecoin" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "litecoin" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -331,18 +336,19 @@ namespace ThongTinTienAo
             StringBuilder command = new StringBuilder();
 
             var result = await _client.CoinsClient.GetMarketChartsByCoinId("litecoin", "usd", "max");
-            foreach (var value in result.Prices)
+            for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
-                value[0] = value[0] / 1000;
-                Console.Write(FromUnixTime((long)value[0]));
-                Console.Write(", ");
-                Console.WriteLine(value[1]);
-
-                //chtCoin.Series[0].Points.AddXY(FromUnixTime((long)value[0]).ToString().Substring(0, 11), value[1]);
-                //query = "INSERT INTO " + _nameCoin + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');";
-                command.Append("INSERT INTO " + "litecoin" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
-
+                // insert the below data into the created table
+                command.Append("INSERT INTO " + "litecoin" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                lblCoinVolume5.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblMarketCap5.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                // get the first line
+                result.Prices[i][0] = result.Prices[i][0] / 1000;
+                /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
+                Console.Write(",                    ");*/
+                Console.Write(result.Prices[i][1]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.TotalVolumes[i][0]);
             }
             try
             {
@@ -372,7 +378,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "eos" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "eos" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -401,14 +407,19 @@ namespace ThongTinTienAo
             StringBuilder command = new StringBuilder();
 
             var result = await _client.CoinsClient.GetMarketChartsByCoinId("eos", "usd", "max");
-            foreach (var value in result.Prices)
+            for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
-                value[0] = value[0] / 1000;
-                Console.Write(FromUnixTime((long)value[0]));
-                Console.Write(", ");
-                Console.WriteLine(value[1]);                
-                command.Append("INSERT INTO " + "eos" + "(`time`, `price`) VALUES ('" + value[0] + "', '" + value[1] + "');");
-
+                // insert the below data into the created table
+                command.Append("INSERT INTO " + "eos" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                lblCoinVolume6.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblMarketCap6.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                // get the first line
+                result.Prices[i][0] = result.Prices[i][0] / 1000;
+                /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
+                Console.Write(",                    ");*/
+                Console.Write(result.Prices[i][1]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.TotalVolumes[i][0]);
             }
             try
             {
@@ -446,6 +457,7 @@ namespace ThongTinTienAo
 
         private async void tmrUpdateTop3_Tick(object sender, EventArgs e)
         {
+            
             HttpClient httpClient = new HttpClient();
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings();
 
@@ -472,8 +484,9 @@ namespace ThongTinTienAo
                     // Getting current price of tether in usd
                     ids = "bitcoin";
                     vsCurrencies = "usd";
-                    lblCoinTop1.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["bitcoin"]["usd"]).ToString();
-                    await Task.Delay(100); 
+                    lblCoinTop1.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["bitcoin"]["usd"]).ToString();                   
+                    await Task.Delay(100);
+                  
 
                     ids = "ripple";
                     vsCurrencies = "usd";
@@ -512,8 +525,12 @@ namespace ThongTinTienAo
             SimpleClient simpleClient = new SimpleClient(httpClient, serializerSettings);
             CoinGeckoClient coinClient = new CoinGeckoClient(httpClient, serializerSettings);
 
+
             // show CoinPrice
             lblGiaTien.Text = "Checking.....";
+            lblVolume.Text = "Checking.....";
+            lblMarketCap.Text = "Checking.....";
+
             try
             {
                 // Check CoinGecko API status
@@ -527,9 +544,17 @@ namespace ThongTinTienAo
                         // choose unit to convert
                         string vsCurrencies = "usd";
                         // print
-                        lblGiaTien.Text = "Coin Price " + ids + ": " +
-                            ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))[ids]["usd"]).ToString()
-                            + "$";
+
+
+                        lblGiaTien.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))[ids]["usd"]).ToString() + "$";
+                        
+                        var result = await _client.CoinsClient.GetMarketChartsByCoinId(ids, "usd", "max");
+                        /* lblVolume.Text = "Total Volume of " + ids + ": " +
+                             (Convert.ToString(Math.Round((double)(result.TotalVolumes[1500][1])))) + "$";*/
+                       lblVolume.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length-1][1]))));
+                       lblMarketCap.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+
+
                     }
                     catch
                     {
@@ -542,10 +567,10 @@ namespace ThongTinTienAo
 
             }
         }
-
+    
         private void btnDoThi_Click(object sender, EventArgs e)
         {
-            if (lblGiaTien.Text.Length > 20)
+            if (CP1.Text.Length > 20)
             {   
                 // open the Graph with the parameter in tbxNameCoin1
                 formGraph fr = new formGraph(tbxNameCoin1.Text);
@@ -619,6 +644,36 @@ namespace ThongTinTienAo
         }
 
         private void lblCoinTop8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CoinVolume1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblVolume_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCoinVolume3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblVolume_Click_1(object sender, EventArgs e)
         {
 
         }
