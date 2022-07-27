@@ -40,17 +40,17 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCoinTop1 = new System.Windows.Forms.Label();
             this.lblCoinTop2 = new System.Windows.Forms.Label();
-            this.lblCoinTop6 = new System.Windows.Forms.Label();
             this.lblCoinTop4 = new System.Windows.Forms.Label();
+            this.lblCoinTop3 = new System.Windows.Forms.Label();
             this.lblCoinTop5 = new System.Windows.Forms.Label();
-            this.lblCoinTop8 = new System.Windows.Forms.Label();
+            this.lblCoinTop6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblCoinVolume6 = new System.Windows.Forms.Label();
             this.lblCoinVolume5 = new System.Windows.Forms.Label();
-            this.lblCoinVolume4 = new System.Windows.Forms.Label();
             this.lblCoinVolume3 = new System.Windows.Forms.Label();
             this.lblCoinVolume2 = new System.Windows.Forms.Label();
+            this.lblCoinVolume4 = new System.Windows.Forms.Label();
             this.lblCoinVolume1 = new System.Windows.Forms.Label();
             this.TV = new System.Windows.Forms.Label();
             this.lblMarketCap1 = new System.Windows.Forms.Label();
@@ -140,7 +140,7 @@
             // 
             this.btnDoThi.BackColor = System.Drawing.Color.DarkGray;
             this.btnDoThi.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDoThi.Location = new System.Drawing.Point(954, 260);
+            this.btnDoThi.Location = new System.Drawing.Point(934, 260);
             this.btnDoThi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDoThi.Name = "btnDoThi";
             this.btnDoThi.Size = new System.Drawing.Size(291, 57);
@@ -200,25 +200,25 @@
             this.lblCoinTop2.Text = "label2";
             this.lblCoinTop2.Click += new System.EventHandler(this.lblCoinTop2_Click);
             // 
-            // lblCoinTop6
-            // 
-            this.lblCoinTop6.AutoSize = true;
-            this.lblCoinTop6.Location = new System.Drawing.Point(563, 348);
-            this.lblCoinTop6.Name = "lblCoinTop6";
-            this.lblCoinTop6.Size = new System.Drawing.Size(44, 16);
-            this.lblCoinTop6.TabIndex = 4;
-            this.lblCoinTop6.Text = "label6";
-            this.lblCoinTop6.Click += new System.EventHandler(this.lblCoinTop3_Click);
-            // 
             // lblCoinTop4
             // 
             this.lblCoinTop4.AutoSize = true;
-            this.lblCoinTop4.Location = new System.Drawing.Point(563, 285);
+            this.lblCoinTop4.Location = new System.Drawing.Point(563, 348);
             this.lblCoinTop4.Name = "lblCoinTop4";
             this.lblCoinTop4.Size = new System.Drawing.Size(44, 16);
-            this.lblCoinTop4.TabIndex = 5;
+            this.lblCoinTop4.TabIndex = 4;
             this.lblCoinTop4.Text = "label4";
-            this.lblCoinTop4.Click += new System.EventHandler(this.lblCoinTop4_Click);
+            this.lblCoinTop4.Click += new System.EventHandler(this.lblCoinTop3_Click);
+            // 
+            // lblCoinTop3
+            // 
+            this.lblCoinTop3.AutoSize = true;
+            this.lblCoinTop3.Location = new System.Drawing.Point(563, 285);
+            this.lblCoinTop3.Name = "lblCoinTop3";
+            this.lblCoinTop3.Size = new System.Drawing.Size(44, 16);
+            this.lblCoinTop3.TabIndex = 5;
+            this.lblCoinTop3.Text = "label3";
+            this.lblCoinTop3.Click += new System.EventHandler(this.lblCoinTop4_Click);
             // 
             // lblCoinTop5
             // 
@@ -230,15 +230,15 @@
             this.lblCoinTop5.Text = "label5";
             this.lblCoinTop5.Click += new System.EventHandler(this.lblCoinTop5_Click);
             // 
-            // lblCoinTop8
+            // lblCoinTop6
             // 
-            this.lblCoinTop8.AutoSize = true;
-            this.lblCoinTop8.Location = new System.Drawing.Point(563, 474);
-            this.lblCoinTop8.Name = "lblCoinTop8";
-            this.lblCoinTop8.Size = new System.Drawing.Size(44, 16);
-            this.lblCoinTop8.TabIndex = 9;
-            this.lblCoinTop8.Text = "label8";
-            this.lblCoinTop8.Click += new System.EventHandler(this.lblCoinTop8_Click);
+            this.lblCoinTop6.AutoSize = true;
+            this.lblCoinTop6.Location = new System.Drawing.Point(563, 474);
+            this.lblCoinTop6.Name = "lblCoinTop6";
+            this.lblCoinTop6.Size = new System.Drawing.Size(44, 16);
+            this.lblCoinTop6.TabIndex = 9;
+            this.lblCoinTop6.Text = "label6";
+            this.lblCoinTop6.Click += new System.EventHandler(this.lblCoinTop8_Click);
             // 
             // textBox1
             // 
@@ -257,15 +257,15 @@
             this.panel2.BackgroundImage = global::ThongTinTienAo.Properties.Resources.top_cryptocurrencies;
             this.panel2.Controls.Add(this.lblCoinVolume6);
             this.panel2.Controls.Add(this.lblCoinVolume5);
-            this.panel2.Controls.Add(this.lblCoinVolume4);
             this.panel2.Controls.Add(this.lblCoinVolume3);
             this.panel2.Controls.Add(this.lblCoinVolume2);
+            this.panel2.Controls.Add(this.lblCoinVolume4);
             this.panel2.Controls.Add(this.lblCoinVolume1);
             this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.lblCoinTop8);
-            this.panel2.Controls.Add(this.lblCoinTop5);
-            this.panel2.Controls.Add(this.lblCoinTop4);
             this.panel2.Controls.Add(this.lblCoinTop6);
+            this.panel2.Controls.Add(this.lblCoinTop5);
+            this.panel2.Controls.Add(this.lblCoinTop3);
+            this.panel2.Controls.Add(this.lblCoinTop4);
             this.panel2.Controls.Add(this.lblCoinTop2);
             this.panel2.Controls.Add(this.lblCoinTop1);
             this.panel2.Controls.Add(this.pictureBox1);
@@ -294,34 +294,35 @@
             this.lblCoinVolume5.TabIndex = 16;
             this.lblCoinVolume5.Text = "labelE";
             // 
-            // lblCoinVolume4
-            // 
-            this.lblCoinVolume4.AutoSize = true;
-            this.lblCoinVolume4.Location = new System.Drawing.Point(384, 285);
-            this.lblCoinVolume4.Name = "lblCoinVolume4";
-            this.lblCoinVolume4.Size = new System.Drawing.Size(47, 16);
-            this.lblCoinVolume4.TabIndex = 15;
-            this.lblCoinVolume4.Text = "labelD";
-            // 
             // lblCoinVolume3
             // 
             this.lblCoinVolume3.AutoSize = true;
-            this.lblCoinVolume3.Location = new System.Drawing.Point(386, 221);
+            this.lblCoinVolume3.Location = new System.Drawing.Point(385, 348);
             this.lblCoinVolume3.Name = "lblCoinVolume3";
             this.lblCoinVolume3.Size = new System.Drawing.Size(46, 16);
-            this.lblCoinVolume3.TabIndex = 14;
+            this.lblCoinVolume3.TabIndex = 15;
             this.lblCoinVolume3.Text = "labelC";
-            this.lblCoinVolume3.Click += new System.EventHandler(this.lblCoinVolume3_Click);
+            this.lblCoinVolume3.Click += new System.EventHandler(this.lblCoinVolume4_Click);
             // 
             // lblCoinVolume2
             // 
             this.lblCoinVolume2.AutoSize = true;
-            this.lblCoinVolume2.Location = new System.Drawing.Point(386, 348);
+            this.lblCoinVolume2.Location = new System.Drawing.Point(387, 285);
             this.lblCoinVolume2.Name = "lblCoinVolume2";
             this.lblCoinVolume2.Size = new System.Drawing.Size(46, 16);
-            this.lblCoinVolume2.TabIndex = 13;
+            this.lblCoinVolume2.TabIndex = 14;
             this.lblCoinVolume2.Text = "labelB";
-            this.lblCoinVolume2.Click += new System.EventHandler(this.label2_Click);
+            this.lblCoinVolume2.Click += new System.EventHandler(this.lblCoinVolume3_Click);
+            // 
+            // lblCoinVolume4
+            // 
+            this.lblCoinVolume4.AutoSize = true;
+            this.lblCoinVolume4.Location = new System.Drawing.Point(386, 221);
+            this.lblCoinVolume4.Name = "lblCoinVolume4";
+            this.lblCoinVolume4.Size = new System.Drawing.Size(47, 16);
+            this.lblCoinVolume4.TabIndex = 13;
+            this.lblCoinVolume4.Text = "labelD";
+            this.lblCoinVolume4.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblCoinVolume1
             // 
@@ -489,18 +490,18 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblCoinTop1;
         private System.Windows.Forms.Label lblCoinTop2;
-        private System.Windows.Forms.Label lblCoinTop6;
         private System.Windows.Forms.Label lblCoinTop4;
+        private System.Windows.Forms.Label lblCoinTop3;
         private System.Windows.Forms.Label lblCoinTop5;
-        private System.Windows.Forms.Label lblCoinTop8;
+        private System.Windows.Forms.Label lblCoinTop6;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblCoinVolume2;
+        private System.Windows.Forms.Label lblCoinVolume4;
         private System.Windows.Forms.Label lblCoinVolume1;
         private System.Windows.Forms.Label lblCoinVolume6;
         private System.Windows.Forms.Label lblCoinVolume5;
-        private System.Windows.Forms.Label lblCoinVolume4;
         private System.Windows.Forms.Label lblCoinVolume3;
+        private System.Windows.Forms.Label lblCoinVolume2;
         private System.Windows.Forms.Label TV;
         private System.Windows.Forms.Label lblMarketCap1;
         private System.Windows.Forms.Label lblMarketCap2;

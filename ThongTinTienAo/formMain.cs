@@ -25,7 +25,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` TEXT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` TEXT NOT NULL, `marketcap` TEXT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -55,7 +55,8 @@ namespace ThongTinTienAo
             for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + "bitcoin" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                command.Append("INSERT INTO " + "bitcoin" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
+                + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
                 lblCoinVolume1.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
                 lblMarketCap1.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
@@ -65,6 +66,8 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.MarketCaps[i][0]);
             }
             try
             {
@@ -93,7 +96,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "tether" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "tether" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT, `marketcap` BIGINT  ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -125,8 +128,9 @@ namespace ThongTinTienAo
             for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + "tether" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
-                lblCoinVolume2.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                command.Append("INSERT INTO " + "tether" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
+                + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
+                lblCoinVolume3.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
                 lblMarketCap2.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -135,6 +139,8 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.MarketCaps[i][0]);
             }
             try
             {
@@ -164,7 +170,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL, `marketcap` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -196,8 +202,9 @@ namespace ThongTinTienAo
             for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + "ethereum" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
-                lblCoinVolume3.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                command.Append("INSERT INTO " + "ethereum" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
+                + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
+                lblCoinVolume4.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
                 lblMarketCap3.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -206,6 +213,8 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.MarketCaps[i][0]);
             }
             try
             {
@@ -235,7 +244,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "ripple" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "ripple" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL, `marketcap` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -267,8 +276,9 @@ namespace ThongTinTienAo
             for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + "ripple" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
-                lblCoinVolume4.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                command.Append("INSERT INTO " + "ripple" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
+                + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
+                lblCoinVolume2.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
                 lblMarketCap4.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -277,6 +287,8 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.MarketCaps[i][0]);
             }
             try
             {
@@ -307,7 +319,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "litecoin" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "litecoin" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL, `marketcap` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -339,7 +351,8 @@ namespace ThongTinTienAo
             for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + "litecoin" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                command.Append("INSERT INTO " + "litecoin" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
+                + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
                 lblCoinVolume5.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
                 lblMarketCap5.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
@@ -349,6 +362,8 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.MarketCaps[i][0]);
             }
             try
             {
@@ -378,7 +393,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "eos" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "eos" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL, `marketcap` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -410,7 +425,8 @@ namespace ThongTinTienAo
             for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + "eos" + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");
+                command.Append("INSERT INTO " + "eos" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
+                + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
                 lblCoinVolume6.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
                 lblMarketCap6.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
@@ -420,6 +436,8 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.MarketCaps[i][0]);
             }
             try
             {
@@ -472,7 +490,7 @@ namespace ThongTinTienAo
                     // Getting current price of tether in usd
                     string ids = "tether";
                     string vsCurrencies = "usd";
-                    lblCoinTop6.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["tether"]["usd"]).ToString();
+                    lblCoinTop4.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["tether"]["usd"]).ToString();
                     // Getting current price of tether in usd
                     await Task.Delay(100); 
 
@@ -490,7 +508,7 @@ namespace ThongTinTienAo
 
                     ids = "ripple";
                     vsCurrencies = "usd";
-                    lblCoinTop4.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["ripple"]["usd"]).ToString();
+                    lblCoinTop3.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["ripple"]["usd"]).ToString();
                     await Task.Delay(100);                                
 
 
@@ -501,7 +519,7 @@ namespace ThongTinTienAo
 
                     ids = "eos";
                     vsCurrencies = "usd";
-                    lblCoinTop8.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["eos"]["usd"]).ToString();
+                    lblCoinTop6.Text = ((await simpleClient.GetSimplePrice(new[] { ids }, new[] { vsCurrencies }))["eos"]["usd"]).ToString();
                     await Task.Delay(100); 
 
                 }
@@ -570,7 +588,7 @@ namespace ThongTinTienAo
     
         private void btnDoThi_Click(object sender, EventArgs e)
         {
-            if (CP1.Text.Length > 20)
+            if (CP1.Text.Length > 3)
             {   
                 // open the Graph with the parameter in tbxNameCoin1
                 formGraph fr = new formGraph(tbxNameCoin1.Text);
@@ -674,6 +692,11 @@ namespace ThongTinTienAo
         }
 
         private void lblVolume_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCoinVolume4_Click(object sender, EventArgs e)
         {
 
         }

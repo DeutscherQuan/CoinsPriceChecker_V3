@@ -84,11 +84,10 @@ namespace ThongTinTienAo
             var result = await _client.CoinsClient.GetMarketChartsByCoinId(_nameCoin, "usd", "max");
 
             // get only Prices value
-            for(long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
+            for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + result.TotalVolumes[i][1] + "');");
-
+                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");               
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
                 /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
@@ -96,11 +95,12 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
-                
+            
 
-                // AddXY is function to draw the graph
-                // transform to String and start form 0 to 11 characters
-                chtCoin.Series[0].Points.AddXY(FromUnixTime((long)result.Prices[i][0]).ToString().Substring(0,11), result.Prices[i][1]);                        
+
+            // AddXY is function to draw the graph
+            // transform to String and start form 0 to 11 characters
+            chtCoin.Series[0].Points.AddXY(FromUnixTime((long)result.Prices[i][0]).ToString().Substring(0,11), result.Prices[i][1]);                        
               
             }
 
