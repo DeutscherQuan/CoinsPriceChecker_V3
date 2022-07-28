@@ -121,7 +121,19 @@
   <data name="LastPic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LastPic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="top-cryptocurrencies" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\top-cryptocurrencies.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VCLVCLVCLVCLVLCVLCLVCLVCLVCLV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VCLVCLVCLVCLVLCVLCLVCLVCLVCLV.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BackGroundPJ1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BackGroundPJ1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -211,5 +211,17 @@
   <ItemGroup>
     <None Include="Resources\top-cryptocurrencies.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VCLVCLVCLVCLVLCVLCLVCLVCLVCLV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackGroundPJ1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,7 +25,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` TEXT NOT NULL, `marketcap` TEXT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "bitcoin" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` TEXT NOT NULL, `marketcap` TEXT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -170,7 +170,7 @@ namespace ThongTinTienAo
             try
             {
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
-                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL, `marketcap` BIGINT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + "ethereum" + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL, `marketcap` BIGINT NOT NULL ) ENGINE = InnoDB;";
 
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
@@ -697,6 +697,26 @@ namespace ThongTinTienAo
         }
 
         private void lblCoinVolume4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void formMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MC_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblGiaTien_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMarketCap_Click(object sender, EventArgs e)
         {
 
         }

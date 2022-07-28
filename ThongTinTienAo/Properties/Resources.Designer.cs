@@ -63,6 +63,36 @@ namespace ThongTinTienAo.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackGroundPJ1 {
+            get {
+                object obj = ResourceManager.GetObject("BackGroundPJ1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap futuristic_technology_abstract_background_beautiful_footage_087637197_prevstill {
+            get {
+                object obj = ResourceManager.GetObject("futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap futuristic_technology_abstract_background_beautiful_footage_087637197_prevstill1 {
+            get {
+                object obj = ResourceManager.GetObject("futuristic-technology-abstract-background-beautiful-footage-087637197_prevstill1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LastPic {
             get {
                 object obj = ResourceManager.GetObject("LastPic", resourceCulture);
@@ -76,6 +106,16 @@ namespace ThongTinTienAo.Properties {
         internal static System.Drawing.Bitmap top_cryptocurrencies {
             get {
                 object obj = ResourceManager.GetObject("top-cryptocurrencies", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VCLVCLVCLVCLVLCVLCLVCLVCLVCLV {
+            get {
+                object obj = ResourceManager.GetObject("VCLVCLVCLVCLVLCVLCLVCLVCLVCLV", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
