@@ -63,6 +63,26 @@ namespace ThongTinTienAo.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AppInterface {
+            get {
+                object obj = ResourceManager.GetObject("AppInterface", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AppInterface2 {
+            get {
+                object obj = ResourceManager.GetObject("AppInterface2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BackGroundPJ1 {
             get {
                 object obj = ResourceManager.GetObject("BackGroundPJ1", resourceCulture);
@@ -106,16 +126,6 @@ namespace ThongTinTienAo.Properties {
         internal static System.Drawing.Bitmap top_cryptocurrencies {
             get {
                 object obj = ResourceManager.GetObject("top-cryptocurrencies", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap VCLVCLVCLVCLVLCVLCLVCLVCLVCLV {
-            get {
-                object obj = ResourceManager.GetObject("VCLVCLVCLVCLVLCVLCLVCLVCLVCLV", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

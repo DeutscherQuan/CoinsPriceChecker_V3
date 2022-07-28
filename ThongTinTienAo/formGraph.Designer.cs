@@ -43,23 +43,25 @@ namespace ThongTinTienAo
             this.chtCoin.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chtCoin.Legends.Add(legend1);
-            this.chtCoin.Location = new System.Drawing.Point(12, 12);
+            this.chtCoin.Location = new System.Drawing.Point(9, 10);
+            this.chtCoin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chtCoin.Name = "chtCoin";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Bitcoin";
             this.chtCoin.Series.Add(series1);
-            this.chtCoin.Size = new System.Drawing.Size(1328, 731);
+            this.chtCoin.Size = new System.Drawing.Size(996, 594);
             this.chtCoin.TabIndex = 0;
             this.chtCoin.Text = "chart1";
             this.chtCoin.Click += new System.EventHandler(this.chtCoin_Click);
             // 
             // formGraph
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1352, 746);
+            this.ClientSize = new System.Drawing.Size(1014, 606);
             this.Controls.Add(this.chtCoin);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "formGraph";
             this.Text = "formGraph";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

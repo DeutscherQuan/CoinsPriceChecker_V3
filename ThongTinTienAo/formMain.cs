@@ -57,8 +57,8 @@ namespace ThongTinTienAo
                 // insert the below data into the created table
                 command.Append("INSERT INTO " + "bitcoin" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
                 + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
-                lblCoinVolume1.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
-                lblMarketCap1.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                lblCoinVolume1.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) ;
+                lblMarketCap1.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1])))) ;
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
                 /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
@@ -130,7 +130,7 @@ namespace ThongTinTienAo
                 // insert the below data into the created table
                 command.Append("INSERT INTO " + "tether" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
                 + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
-                lblCoinVolume3.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblCoinVolume3.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) ;
                 lblMarketCap2.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -204,7 +204,7 @@ namespace ThongTinTienAo
                 // insert the below data into the created table
                 command.Append("INSERT INTO " + "ethereum" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
                 + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
-                lblCoinVolume4.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblCoinVolume4.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) ;
                 lblMarketCap3.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -278,7 +278,7 @@ namespace ThongTinTienAo
                 // insert the below data into the created table
                 command.Append("INSERT INTO " + "ripple" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
                 + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
-                lblCoinVolume2.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblCoinVolume2.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) ;
                 lblMarketCap4.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -353,7 +353,7 @@ namespace ThongTinTienAo
                 // insert the below data into the created table
                 command.Append("INSERT INTO " + "litecoin" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
                 + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
-                lblCoinVolume5.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblCoinVolume5.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) ;
                 lblMarketCap5.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -427,7 +427,7 @@ namespace ThongTinTienAo
                 // insert the below data into the created table
                 command.Append("INSERT INTO " + "eos" + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
                 + "', '" + (result.MarketCaps[i][1]).ToString() + "');");
-                lblCoinVolume6.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) + "$";
+                lblCoinVolume6.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length - 1][1])))) ;
                 lblMarketCap6.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
@@ -570,7 +570,7 @@ namespace ThongTinTienAo
                         /* lblVolume.Text = "Total Volume of " + ids + ": " +
                              (Convert.ToString(Math.Round((double)(result.TotalVolumes[1500][1])))) + "$";*/
                        lblVolume.Text = (Convert.ToString(Math.Round((double)(result.TotalVolumes[result.TotalVolumes.Length-1][1]))));
-                       lblMarketCap.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1]))));
+                       lblMarketCap.Text = (Convert.ToString(Math.Round((double)(result.MarketCaps[result.TotalVolumes.Length - 1][1])))) + "$";
 
 
                     }

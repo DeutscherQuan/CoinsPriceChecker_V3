@@ -46,7 +46,7 @@ namespace ThongTinTienAo
                 string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=geckocoin_data;";
                 // creat table
                 // InnoDB could explain what MySQL version we are using
-                string query = " CREATE TABLE `geckocoin_data`.`" + _nameCoin + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL ) ENGINE = InnoDB;";
+                string query = " CREATE TABLE `geckocoin_data`.`" + _nameCoin + "` (`time` INT NOT NULL , `price` DOUBLE NOT NULL, `volume` BIGINT NOT NULL, `marketcap` BIGINT NOT NULL ) ENGINE = InnoDB;";
                 // send databaseCoinnection and send it to connectionString
                 MySqlConnection databaseConnection = new MySqlConnection(connectionString);
 
@@ -87,7 +87,8 @@ namespace ThongTinTienAo
             for (long i = 0; i < result.Prices.Length; i++)// var value in result.Prices)
             {
                 // insert the below data into the created table
-                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`, `volume`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString() + "');");               
+                command.Append("INSERT INTO " + _nameCoin + "(`time`, `price`, `volume`, `marketcap`) VALUES ('" + result.Prices[i][0] + "', '" + result.Prices[i][1] + "', '" + (result.TotalVolumes[i][1]).ToString()
+                + "', '" + (result.MarketCaps[i][1]).ToString() + "');");               
                 // get the first line
                 result.Prices[i][0] = result.Prices[i][0] / 1000;
                 /*Console.Write(FromUnixTime((long)result.Prices[i][0]));
@@ -95,7 +96,10 @@ namespace ThongTinTienAo
                 Console.Write(result.Prices[i][1]);
                 Console.Write(",                    ");
                 Console.WriteLine(result.TotalVolumes[i][0]);
+                Console.Write(",                    ");
+                Console.WriteLine(result.MarketCaps[i][0]);
             
+
 
 
             // AddXY is function to draw the graph
